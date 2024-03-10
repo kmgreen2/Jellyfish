@@ -8,7 +8,7 @@ pkgconfigdir = $(libdir)/pkgconfig
 pkgconfig_DATA = jellyfish-2.0.pc
 
 AM_LDFLAGS = -pthread $(HTSLIB_LIBS) $(HTSLIB_RPATH) # $(VALGRIND_LIBS)
-AM_CPPFLAGS = -Wall -Wnon-virtual-dtor -I$(srcdir) -I$(srcdir)/include $(VALGRIND_CFLAGS)
+AM_CPPFLAGS = -I$(srcdir) -I$(srcdir)/include $(VALGRIND_CFLAGS)
 AM_CXXFLAGS = $(ALL_CXXFLAGS) $(HTSLIB_CFLAGS)
 #AM_LDADD    = $(HTSLIB_LIBS) -lpthread
 
@@ -212,7 +212,7 @@ bin_test_all_SOURCES = unit_tests/test_main.cc				\
 bin_test_all_SOURCES += jellyfish/backtrace.cc
 
 bin_test_all_CPPFLAGS = $(AM_CPPFLAGS) -DJSON_IS_AMALGAMATION=1
-bin_test_all_CXXFLAGS = $(AM_CXXFLAGS) -I$(srcdir)/unit_tests/gtest/include -I$(srcdir)/unit_tests -I$(srcdir)/include -Wno-unused-variable
+bin_test_all_CXXFLAGS = $(AM_CXXFLAGS) -I$(srcdir)/unit_tests/gtest/include -I$(srcdir)/unit_tests -I$(srcdir)/include
 bin_test_all_LDADD = libgtest.la $(LDADD)
 YAGGO_SOURCES += unit_tests/test_main_cmdline.hpp
 noinst_HEADERS += unit_tests/test_main.hpp

@@ -54,7 +54,7 @@ std::string tmp_pipes::create_tmp_dir() {
   for(auto it = prefixes.begin(); it != prefixes.end(); ++it) {
     size_t len = strlen(*it) + 6 + 1;
     std::unique_ptr<char[]> tmppath(new char[len]);
-    sprintf(tmppath.get(), "%sXXXXXX", *it);
+    snprintf(tmppath.get(), len, "%sXXXXXX", *it);
     const char* res = mkdtemp(tmppath.get());
     if(res)
       return std::string(res);

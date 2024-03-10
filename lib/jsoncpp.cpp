@@ -1025,7 +1025,7 @@ Reader::getLocationLineAndColumn( Location location ) const
    int line, column;
    getLocationLineAndColumn( location, line, column );
    char buffer[18+16+16+1];
-   sprintf( buffer, "Line %d, Column %d", line, column );
+   snprintf( buffer, 18+16+16+1, "Line %d, Column %d", line, column );
    return buffer;
 }
 
@@ -3461,7 +3461,7 @@ std::string valueToString( double value )
 #if defined(_MSC_VER) && defined(__STDC_SECURE_LIB__) // Use secure version with visual studio 2005 to avoid warning. 
    sprintf_s(buffer, sizeof(buffer), "%#.16g", value); 
 #else	
-   sprintf(buffer, "%#.16g", value); 
+   snprintf(buffer, 32, "%#.16g", value);
 #endif
    char* ch = buffer + strlen(buffer) - 1;
    if (*ch != '0') return buffer; // nothing to truncate, so save time
